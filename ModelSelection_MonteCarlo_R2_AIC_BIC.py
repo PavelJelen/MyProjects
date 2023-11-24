@@ -5,12 +5,13 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import statsmodels.api as sm
 
+# Arbitrary parameters for Monte Carlo
 n = 100
 beta = 0.05
 M = 1000
 p = 50
 
-# 1) 3 placeholder matrices
+# 3 placeholder matrices
 select_adj_r2 = np.zeros((M, 45))
 select_BIC = np.zeros((M, 45))
 select_AIC = np.zeros((M, 45))
@@ -29,7 +30,7 @@ for x in range(M):
         if(true_AIC < FalseModel.aic): select_AIC[x, m-6] = 1
         if(true_BIC < FalseModel.bic): select_BIC[x, m-6] = 1
 
-# 3) Plotting the results
+# Plotting the results
 Grid_R2 = np.sum(select_adj_r2, axis=0) / M
 Grid_AIC = np.sum(select_AIC, axis=0) / M
 Grid_BIC = np.sum(select_BIC, axis=0) / M
