@@ -19,7 +19,7 @@ select_AIC = np.zeros((M, 45))
 for x in range(M):
     Predictors = np.random.randn(n, p)
     errors = np.random.randn(n)
-    Target = np.sum(beta * Predictors[:, :5], axis=1) + errors
+    Target = np.sum(beta * Predictors[:, :5], axis=1) + errors #Only the first 5 coefficients are relevant
     TrueModel = sm.OLS(Target,Predictors[:,:5]).fit()
     true_r2 = TrueModel.rsquared_adj
     true_AIC = TrueModel.aic
@@ -37,11 +37,11 @@ Grid_BIC = np.sum(select_BIC, axis=0) / M
 sequence = np.arange(1, 46, 1)
 df = pd.DataFrame({'sequence': sequence, 'Grid_R2': Grid_R2, 'Grid_AIC': Grid_AIC, 'Grid_BIC': Grid_BIC})
 
-plt.plot(df['sequence'], df['Grid_R2'], color="red", label='Grid_R2')
-plt.plot(df['sequence'], df['Grid_AIC'], color="blue", label='Grid_AIC')
-plt.plot(df['sequence'], df['Grid_BIC'], color="green", label='Grid_BIC')
+plt.plot(df['sequence'], df['Grid_R2'], color="red", label='R2')
+plt.plot(df['sequence'], df['Grid_AIC'], color="blue", label='AIC')
+plt.plot(df['sequence'], df['Grid_BIC'], color="green", label='BIC')
 plt.legend(loc='best')
-plt.xlabel('sequence')
+plt.xlabel('No. of coefficients in the model')
 plt.ylabel('Score')
 plt.show()
 
