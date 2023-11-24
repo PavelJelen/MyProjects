@@ -42,7 +42,7 @@ plt.plot(df['sequence'], df['Grid_BIC'], color="green", label='Grid_BIC')
 plt.legend(loc='best')
 plt.xlabel('sequence')
 plt.ylabel('Score')
-plt.show()
+plt.show("png")
 
 # Monte Carlo simulation is a simulation experiment that repeatedly generates (random) variables
 # to conduct some (statistical) analysis. It is a simple way to obtain a representative distribution of a result for a specic, known process.
