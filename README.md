@@ -8,8 +8,8 @@ For comparison of the models, I used an intuitive Mean Average Percentage Error 
 
 ### Simple XGBoost
 Feature engineering steps:
-  Outlier removal
-  Feature creation: Hours, Day of week, Quarter, Month, Year, Day of year
+Outlier removal
+Feature creation: Hours, Day of week, Quarter, Month, Year, Day of year
   
 Simple train/test split
   Datapoints earlier than 01-01-2015 used for training
