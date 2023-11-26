@@ -11,12 +11,12 @@ Feature engineering steps:
 Outlier removal
 Feature creation: Hours, Day of week, Quarter, Month, Year, Day of year
   
-Simple train/test split
-  Datapoints earlier than 01-01-2015 used for training
+Simple train/test split:
+Datapoints earlier than 01-01-2015 used for training
 
 XGBoost Implementation:
-  n_estimators = 1000
-  learning rate = 0.01
+n_estimators = 1000
+learning rate = 0.01
 
 **Mean Average Percentage Error (MAPE):** 9.3% 
 
