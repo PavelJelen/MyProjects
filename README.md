@@ -7,6 +7,11 @@ It is important to note that this data is already cleaned and only limited time 
 For comparison of the models, I used an intuitive Mean Average Percentage Error (MAPE) which states the average percentage error between the forecasted value and the ground truth value. Of course, more involved loss function or information criteria might have been used. 
 
 ### Simple XGBoost
+Feature engineering:  
+  Outlier removal  
+  Feature creation: Day of week, Quarter, Month, Year, Day of Year
+
+
 Feature engineering consisted of outlier removal and feature creation (Day of week, Quarter, Month, Year, Day of Year)
 Train/test split 
 XGBoost implementation: n_estimators = 1000, learning_rate = 0.01
