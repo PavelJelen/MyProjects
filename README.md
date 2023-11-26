@@ -3,10 +3,22 @@
 ## Energy Consumption Forecasting
 This dataset consists of cca 16 (2002 - 2018) years of hourly data on energy consumption. This dataset is available by PJM Interconnection LLC (PJM) which is a regional transmission organization (RTO) in the United States.
 With this data at hand, I conducted several machine learning models. I divided the data so that my holdout set consists of 3 years (2015 - 2018). The rest is used for training and validation. 
-It is important to note that this data is already cleaned and only limited time was spent on feature engineering. The focus is mainly on the implementation of different machine learning models and their comparison.
+It is important to note that this data is already cleaned and only limited time is spent on feature engineering. The focus is mainly on the implementation of different machine learning models and their comparison. 
+For comparison of the models, I used an intuitive Mean Average Percentage Error (MAPE) which states the average percentage error between the forecasted value and the ground truth value. Of course, more involved loss function or information criteria might have been used. 
 
 ### Simple XGBoost
-Feature engineering steps
+Feature engineering steps:
+  Outlier removal
+  Feature creation: Hours, Day of week, Quarter, Month, Year, Day of year
+  
+Simple train/test split
+  Datapoints earlier than 01-01-2015 used for training
+
+XGBoost Implementation:
+  n_estimators = 1000
+  learning rate = 0.01
+
+**Mean Average Percentage Error (MAPE):** 9.3% 
 
 
 
