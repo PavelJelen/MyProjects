@@ -31,14 +31,44 @@ Train/test split:
 Datapoints < 01-01-2015 used for training, the rest for test
 
 XGBoost implementation:
-1) Time seriess 5-k cross-validation with validation size of cca 2 years and gap of 24 datapoints
+1) Time series 5-k cross-validation with validation size of cca 2 years and gap of 24 datapoints
 2) Tuned parameters: max_depth, learning_rate, n_estimators, colsample_bytree
 
 **Mean Average Percentage Error (MAPE):** 9.27% 
 
+### Random Forest w/ hyperparameter tuning and time series cv
+Feature engineering, train/test split same as before
 
+Random Forest implementation:
+1) Time series 5-k cross-validation with validation size of cca 2 years and gap of 24 datapoints
+2) Tuned parameters: n_estimators, max_depth, max_feature, min_sample_leaf, min_sample_split
+   
+**Mean Average Percentage Error (MAPE):** 9.04% 
 
+### LSTM Neural Network 
+Feature engineering:  
+Outlier removal
+Normalization of data
+Sequential input/output for feeding LSTM (window size of 5)
 
+Train/Val/Test split:
+2004 > Datapoints < 2013 used for training (this follows the dataset size available for XGB and RF after removing n/a due to lag creation)
+2013 > Datapoints < 2015 used for validation, the rest for test
+
+LSTM implementation:  
+Initial LSTM of 64 units  
+Added 1 more dense layer with ReLu activation of 8 units
+Optimizer = Adam with learning_rate of 0.0001
+batch_size of 64
+epochs of 10
+loss = MSE
+
+**Mean Average Percentage Error (MAPE):** 1.32%
+
+### Conclusion:
+Additionally, I have implemented **Prophet** model as well as **SARIMA** model. The Prophet model has not performed as good as the others model. Moreover, the SARIMA model, has failed due to convergence error. This stems from mutliple seasonality in the data. One possible remedy would be to model each hour separetely resulting in 24 different SARIMA models. Lastly, SARIMA is more suited for short-term forecasting than a long-term such as 2 years
+
+Finally, we see that LSTM NN yields the best MAPE metric. This might be due to several reasons. Firstly, there could definitely be done more feature engineering when it comes to XGB and RF which would in turn improve MAPE. The same goes for more involved hyperparameter tuning. Nevertheless, this type of data (long-term time-series) is where deep learning such as LSTM generally perform really well.  
 
 ## Model Selection using Monte Carlo 
 In this project, I take a closer look on the topic of "Model Selection". The topic of model selection stems from the bias-variance trade-off. Usually, in order to select a model, one uses an "empirical risk minimizer" such as some loss function which yields the minimal training error.However, such a training error is overly optimistic and there is a need to account for this optimism. Therefore, we are more interested in an average expected loss aka test error. In the machine learning community, cross-validation is typically used for this purpose. Nevertheless, in this project, I use information criteria such as AIC and BIC which appropriately account for the optimism by favouring less complex models and penalizing number of coefficients. There are also different purposes of the information criteria. For example, AIC is equivalent to picking best-predicting model in large samples whereas BIC is equivalent to consistent model selection (picking a true model). 
