@@ -7,7 +7,7 @@ It is important to note that this data is already cleaned and only limited time 
 For comparison of the models, I used an intuitive Mean Average Percentage Error (MAPE) which states the average percentage error between the forecasted value and the ground truth value. Of course, more involved loss function or information criteria might have been used. 
 
 ### Simple XGBoost
-Feature engineering:
+Feature engineering
 Outlier removal
 Feature creation
 
