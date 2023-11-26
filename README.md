@@ -47,21 +47,20 @@ Random Forest implementation:
 
 ### LSTM Neural Network 
 Feature engineering:  
-Outlier removal
-Normalization of data
-Sequential input/output for feeding LSTM (window size of 5)
+Outlier removal  
+Normalization of data  
+Sequential input/output for feeding LSTM (window size of 5)  
 
-Train/Val/Test split:
-2004 > Datapoints < 2013 used for training (this follows the dataset size available for XGB and RF after removing n/a due to lag creation)
-2013 > Datapoints < 2015 used for validation, the rest for test
+Train/Val/Test split:  
+2004 > Datapoints < 2013 used for training (this follows the dataset size available for XGB and RF after removing n/a due to lag creation)  
+2013 > Datapoints < 2015 used for validation, the rest for test  
 
 LSTM implementation:  
-Initial LSTM of 64 units  
-Added 1 more dense layer with ReLu activation of 8 units
-Optimizer = Adam with learning_rate of 0.0001
-batch_size of 64
-epochs of 10
-loss = MSE
+1) Initial LSTM of 64 units  
+2) Added 1 more dense layer with ReLu activation of 8 units  
+3) Optimizer = Adam with learning_rate of 0.0001  
+4) batch_size of 64 epochs of 10
+5) loss = MSE
 
 **Mean Average Percentage Error (MAPE):** 1.32%
 
