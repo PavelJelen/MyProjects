@@ -8,13 +8,15 @@ For comparison of the models, I used an intuitive Mean Average Percentage Error 
 
 ### Simple XGBoost
 Feature engineering:  
-  Outlier removal  
-  Feature creation: Day of week, Quarter, Month, Year, Day of Year
+1) Outlier removal  
+2) Feature creation: Day of week, Quarter, Month, Year, Day of Year
 
+Train/test split:  
+Datapoints < 01-01-2015 used for training, the rest for test
 
-Feature engineering consisted of outlier removal and feature creation (Day of week, Quarter, Month, Year, Day of Year)
-Train/test split 
-XGBoost implementation: n_estimators = 1000, learning_rate = 0.01
+XGBoost implementation:  
+n_estimators = 1000  
+learning_rate = 0.01  
 
 **Mean Average Percentage Error (MAPE):** 9.3% 
 
