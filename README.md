@@ -18,7 +18,24 @@ XGBoost implementation:
 n_estimators = 1000  
 learning_rate = 0.01  
 
-**Mean Average Percentage Error (MAPE):** 9.3% 
+**Mean Average Percentage Error (MAPE):** 9.32% 
+
+### XGBoost w/ hyperparameter tuning and time series cv
+Feature engineering:  
+1) Outlier removal  
+2) Feature creation: Day of week, Quarter, Month, Year, Day of Year
+3) Feature creation: 1-year lag, 2-year lag, 3-year lag
+4) Drop n/a values due to the lag creation
+
+Train/test split:  
+Datapoints < 01-01-2015 used for training, the rest for test
+
+XGBoost implementation:
+1) Time seriess 5-k cross-validation with validation size of cca 2 years and gap of 24 datapoints
+2) Tuned parameters: max_depth, learning_rate, n_estimators, colsample_bytree
+
+**Mean Average Percentage Error (MAPE):** 9.27% 
+
 
 
 
