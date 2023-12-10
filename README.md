@@ -65,9 +65,9 @@ LSTM implementation:
 **Mean Average Percentage Error (MAPE):** 1.32%
 
 ### Conclusion:
-Additionally, I have implemented **Prophet** model as well as **SARIMA** model. The Prophet model has not performed as good as the others model. Moreover, the SARIMA model has failed due to convergence error. This stems from mutliple seasonality in the data. One possible remedy would be to model each hour separetely resulting in 24 different SARIMA models. Lastly, SARIMA is more suited for short-term forecasting than a long-term such as 2 years
+Additionally, I have implemented **Prophet** model as well as **SARIMA** model. The Prophet model has not performed as good as the other models. Moreover, the SARIMA model has failed due to convergence error. This stems from mutliple seasonality in the data. One possible remedy would be to model each hour separetely resulting in 24 different SARIMA models. Lastly, SARIMA is more suited for short-term forecasting than a long-term such as 2 years
 
-Finally, we see that LSTM NN yields the best MAPE metric. This might be due to several reasons. Firstly, there could definitely be done more feature engineering when it comes to XGB and RF which would in turn improve MAPE. The same goes for more involved hyperparameter tuning. Lastly, this type of data (long-term time-series) is where deep learning such as LSTM generally performs really well.  
+Finally, we see that LSTM NN yields the best MAPE. This might be due to several reasons. Firstly, there could definitely be done more feature engineering when it comes to XGB and RF which would in turn improve MAPE. The same applies to more involved hyperparameter tuning. Lastly, this type of data (long-term time-series) is where deep learning such as LSTM generally performs really well.  
 
 ## Trading Strategies
 In this project, I explore various trading strategies ranging from simple strategies based on technical indicators to more involved quantitative strategies 
