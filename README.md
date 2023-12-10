@@ -70,12 +70,12 @@ Additionally, I have implemented **Prophet** model as well as **SARIMA** model. 
 Finally, we see that LSTM NN yields the best MAPE metric. This might be due to several reasons. Firstly, there could definitely be done more feature engineering when it comes to XGB and RF which would in turn improve MAPE. The same goes for more involved hyperparameter tuning. Lastly, this type of data (long-term time-series) is where deep learning such as LSTM generally performs really well.  
 
 ## Trading Strategies
-In this project, I try various trading strategies ranging from simple strategies based on technical indicators to more involved quantitative strategies 
+In this project, I explore various trading strategies ranging from simple strategies based on technical indicators to more involved quantitative strategies 
 ### Unsupervised Learning
-This strategy consisted of selecting 150 most liquid stocks from SP500 index and **computing 18 different features** such as Bollinger Bands, MACD, RSI or Fama-French rolling betas. These F-F risk factors has been shown to empirically explain asset returns. Therefore, it is reasonable to include exposure to these factors as financial features   
+This strategy consisted of selecting 150 most liquid stocks from SP500 index and **computing 18 different features such as Bollinger Bands, MACD, RSI or Fama-French rolling betas**. These F-F risk factors has been shown to empirically explain asset returns. Therefore, it is reasonable to include exposure to these factors as financial features   
 Afterwards, **K-Means clustering** is applied to the whole range of stocks for each month. The main focus is a long-only momentum strategy, i.e., invest in stocks which have high momentum (high RSI) on monthly basis
 Moving on, I create a portfolio based on the highest RSI cluster for each month.
-Following, I **optimize the weights** for each stock on monthly basis using EfficientFrontier optimizer to maximize Sharpe Ratio and ensure diversification by using a lower bound of half of equally-weighted weights and upper bound of 10% for a single stock.   
+I **optimize the weights** for each stock on monthly basis using EfficientFrontier optimizer to maximize Sharpe Ratio and ensure diversification by using a lower bound of half of equally-weighted weights and upper bound of 10% for a single stock.   
 Finally, I compare this portfolio to the returns of SP500 index   
 
 ![Unsupervised learning](https://github.com/PavelJelen/MyProjects/assets/151863506/3327b318-835c-46f5-a7e4-8893e6c00d51)
