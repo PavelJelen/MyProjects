@@ -67,7 +67,18 @@ LSTM implementation:
 ### Conclusion:
 Additionally, I have implemented **Prophet** model as well as **SARIMA** model. The Prophet model has not performed as good as the others model. Moreover, the SARIMA model has failed due to convergence error. This stems from mutliple seasonality in the data. One possible remedy would be to model each hour separetely resulting in 24 different SARIMA models. Lastly, SARIMA is more suited for short-term forecasting than a long-term such as 2 years
 
-Finally, we see that LSTM NN yields the best MAPE metric. This might be due to several reasons. Firstly, there could definitely be done more feature engineering when it comes to XGB and RF which would in turn improve MAPE. The same goes for more involved hyperparameter tuning. Lastly, this type of data (long-term time-series) is where deep learning such as LSTM generally perform really well.  
+Finally, we see that LSTM NN yields the best MAPE metric. This might be due to several reasons. Firstly, there could definitely be done more feature engineering when it comes to XGB and RF which would in turn improve MAPE. The same goes for more involved hyperparameter tuning. Lastly, this type of data (long-term time-series) is where deep learning such as LSTM generally performs really well.  
+
+## Trading Strategies
+In this project, I try various trading strategies ranging from simple strategies based on technical indicators to more involved quantitative strategies 
+### Unsupervised Learning
+This strategy consisted of selecting 150 most liquid stocks from SP500 index and **computing 18 different features** such as Bollinger Bands, MACD, RSI or Fama-French rolling betas. These F-F risk factors has been shown to empirically explain asset returns. Therefore, it is reasonable to include exposure to these factors as financial features   
+Afterwards, **K-Means clustering** is applied to the whole range of stocks for each month. The main focus is a long-only momentum strategy, i.e., invest in stocks which have high momentum (high RSI) on monthly basis
+Moving on, I create a portfolio based on the highest RSI cluster for each month.
+Following, I **optimize the weights** for each stock on monthly basis using EfficientFrontier optimizer to maximize Sharpe Ratio and ensure diversification by using a lower bound of half of equally-weighted weights and upper bound of 10% for a single stock.   
+Finally, I compare this portfolio to the returns of SP500 index   
+
+![Unsupervised learning](https://github.com/PavelJelen/MyProjects/assets/151863506/3327b318-835c-46f5-a7e4-8893e6c00d51)
 
 ## Model Selection using Monte Carlo 
 In this project, I take a closer look on the topic of "Model Selection". The topic of model selection stems from the bias-variance trade-off. Usually, in order to select a model, one uses an "empirical risk minimizer" such as some loss function which yields the minimal training error.However, such a training error is overly optimistic and there is a need to account for this optimism. Therefore, we are more interested in an average expected loss aka test error. In the machine learning community, cross-validation is typically used for this purpose. Nevertheless, in this project, I use information criteria such as AIC and BIC which appropriately account for the optimism by favouring less complex models and penalizing number of coefficients. There are also different purposes of the information criteria. For example, AIC is equivalent to picking best-predicting model in large samples whereas BIC is equivalent to consistent model selection (picking a true model). 
