@@ -73,7 +73,7 @@ Finally, we see that LSTM NN yields the best MAPE metric. This might be due to s
 In this project, I explore various trading strategies ranging from simple strategies based on technical indicators to more involved quantitative strategies 
 ### Unsupervised Learning
 This strategy consisted of selecting 150 most liquid stocks from SP500 index and **computing 18 different features such as Bollinger Bands, MACD, RSI or Fama-French rolling betas**. These F-F risk factors has been shown to empirically explain asset returns. Therefore, it is reasonable to include exposure to these factors as financial features   
-Afterwards, **K-Means clustering** is applied to the whole range of stocks for each month. The main focus is a long-only momentum strategy, i.e., invest in stocks which have high momentum (high RSI) on monthly basis
+Afterwards, **K-Means clustering** is applied to the whole range of stocks for each month. The main focus is a long-only momentum strategy, i.e., invest in stocks which have high momentum (high RSI) on monthly basis.
 Moving on, I create a portfolio based on the highest RSI cluster for each month.
 I **optimize the weights** for each stock on monthly basis using EfficientFrontier optimizer to maximize Sharpe Ratio and ensure diversification by using a lower bound of half of equally-weighted weights and upper bound of 10% for a single stock.   
 Finally, I compare this portfolio to the returns of SP500 index   
