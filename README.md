@@ -1,10 +1,10 @@
 # MyProjects
 
 ## Energy Consumption Forecasting
-This dataset consists of ca 16 years (2002 - 2018) of hourly data on energy consumption. This dataset is available by PJM Interconnection LLC (PJM) which is a regional transmission organization (RTO) in the United States.
-With this data at hand, I conducted several machine learning models. I divided the data so that my holdout set consists of ca 2.5 years (2015 - 2018). The rest is used for training and validation. 
+This dataset consists of ca 16 years (2002 - 2018) of hourly data on energy consumption. This dataset is available by PJM Interconnection LLC (PJM)   
+With this data at hand, I conducted several machine learning models. I divided the data so that the holdout set consists of ca 2.5 years (2015 - 2018). The rest is used for training and validation. 
 It is important to note that this data is already cleaned and only limited time is spent on feature engineering. The focus is mainly on the implementation of different machine learning models and their comparison. 
-For comparison of the models, I used an intuitive Mean Average Percentage Error (MAPE) which states the average percentage error between the forecasted value and the ground truth value. Of course, more involved loss function or information criteria might have been used. 
+For comparison of the models, I used an intuition-friendly Mean Average Percentage Error (MAPE) which states the average percentage error between the forecasted value and the ground truth value. Of course, more involved loss function or information criteria might have been used. 
 
 ### Simple XGBoost
 Feature engineering:  
