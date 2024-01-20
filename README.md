@@ -81,11 +81,17 @@ Finally, I compare this portfolio to the returns of SP500 index
 ![Unsupervised learning](https://github.com/PavelJelen/MyProjects/assets/151863506/3327b318-835c-46f5-a7e4-8893e6c00d51)
 
 ### Twitter Sentiment
-This strategy is based on analyzing the sentiment considering various tickers on Twitter. The data consist of variables such as Ticker, Number of Posts, Likes and Comments. As it is often case with alternative data, there is a need to find some kind of derivative of this data in order for them to be valuable. Therefore, I did not base my strategy on solely using the number of posts, comment or likes and I created an engagement ratio of comments/likes. This prevents from being influenced by various bots hyping a stock and making artifical posts about it.   
-I rebalance the stock portfolio monthly and each time select only 5 stocks with the highest engagement ratio.   
+This strategy is based on analyzing the sentiment considering various tickers on Twitter. The data consist of variables such as Ticker, Number of Posts, Likes and Comments. As it is often the case with alternative data, there is a need to find some kind of derivative of this data in order for them to be valuable. Therefore, I did not base my strategy on solely using the number of posts, comment or likes and I created an engagement ratio of comments/likes. This prevents from being influenced by various bots hyping a stock and making artifical posts about it.   
+I rebalance the stock portfolio monthly and each time select only 5 stocks with the highest engagement ratio based on equal-weights.   
 Finally, I compare the strategy return to the benchmark of Nasdaq returns.   
 
 ![Twitter Engagement Strategy](https://github.com/PavelJelen/MyProjects/assets/151863506/7fd33c37-1d48-460a-a356-4f092b06dfcb)
+
+### Intraday Volatility using GARCH
+This trategy is based on simulated daily and 5-min one-asset data. First, I fit the GARCH model on the daily data to predict one-day ahead volatility in a rolling window. This prediction is used to calculate a features called prediction premium and its associated standard deviation which are used to generate a daily signal. Next, the daily data is merged with the 5-min data. Using the 5-min data, I calculate RSI and Bollinger Bands technical indicators which are used to generate the intraday signal. That being said, I have two signals for each 5-min tick - one from daily timeframe and the other from 5-min timeframe.   
+The final trading strategy is based on mean reversion logic. I only care about the first trading signal of the day and hold it until end of the day. 
+
+![Intraday Strategy Return](https://github.com/PavelJelen/MyProjects/assets/151863506/6d177c70-5d7d-40e5-bae6-2f82ff404211)
 
 
 ## Model Selection using Monte Carlo 
