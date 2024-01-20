@@ -80,6 +80,14 @@ Finally, I compare this portfolio to the returns of SP500 index
 
 ![Unsupervised learning](https://github.com/PavelJelen/MyProjects/assets/151863506/3327b318-835c-46f5-a7e4-8893e6c00d51)
 
+### Twitter Sentiment
+This strategy is based on analyzing the sentiment considering various tickers on Twitter. The data consist of variables such as Ticker, Number of Posts, Likes and Comments. As it is often case with alternative data, there is a need to find some kind of derivative of this data in order for them to be valuable. Therefore, I did not base my strategy on solely using the number of posts, comment or likes and I created an engagement ratio of comments/likes. This prevents from being influenced by various bots hyping a stock and making artifical posts about it.   
+I rebalance the stock portfolio monthly and each time select only 5 stocks with the highest engagement ratio.   
+Finally, I compare the strategy return to the benchmark of Nasdaq returns.   
+
+![Twitter Engagement Strategy](https://github.com/PavelJelen/MyProjects/assets/151863506/7fd33c37-1d48-460a-a356-4f092b06dfcb)
+
+
 ## Model Selection using Monte Carlo 
 In this project, I take a closer look on the topic of "Model Selection". The topic of model selection stems from the bias-variance trade-off. Usually, in order to select a model, one uses an "empirical risk minimizer" such as some loss function which yields the minimal training error.However, such a training error is overly optimistic and there is a need to account for this optimism. Therefore, we are more interested in an average expected loss aka test error. In the machine learning community, cross-validation is typically used for this purpose. Nevertheless, in this project, I use information criteria such as AIC and BIC which appropriately account for the optimism by favouring less complex models and penalizing number of coefficients. There are also different purposes of the information criteria. For example, AIC is equivalent to picking best-predicting model in large samples whereas BIC is equivalent to consistent model selection (picking a true model). 
 I contrast these two information criteria with a traditional adjusted R_squared.
