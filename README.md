@@ -80,6 +80,17 @@ Finally, I compare this portfolio to the returns of SP500 index
 
 ![Unsupervised learning](https://github.com/PavelJelen/MyProjects/assets/151863506/3327b318-835c-46f5-a7e4-8893e6c00d51)
 
+### Multivariate LSTM Classification of S&P500   
+This strategy revolves around classification of next days' UP or DOWN moves. This strategy is based on the extracting multiple features from Magnificent 7 stocks - Apple, Amazon, Tesla, Nvidia, Alphabet, Meta, Microsoft to predict the S&P500 moves.    
+The daily data ranges from 2014 to 2024 and I extract **multiple features of magnificant 7 companies** - 20MA, 50MA, 100MA, RSI, Bollinger Bands and Volume as well as previous day's Close and Volume of S&P500   
+This provides around 65 features to be used for classification.
+The window to be used for LSTM input shapes is 5   
+After modifying the parameters for LSTM several times in order to produce best results, the LSTM is constructed using 3 hidden layers of 64 neurons and batch size of 32. The resulting accuracy for the test set is ca 54%.
+The strategy buys (sells) each day based on the prediction being up (down). This is compared to the buy&hold strategy. 
+
+![AlgoTrading_LSTM_Classification](https://github.com/PavelJelen/MyProjects/assets/151863506/1a2967db-d42b-4b4c-8d84-490576b8218f)   
+
+
 ### Twitter Sentiment
 This strategy is based on analyzing the sentiment considering various tickers on Twitter. The data consist of variables such as Ticker, Number of Posts, Likes and Comments. As it is often the case with alternative data, there is a need to find some kind of derivative of this data in order for them to be valuable. Therefore, I did not base my strategy on solely using the number of posts, comment or likes and I created an engagement ratio of comments/likes. This prevents from being influenced by various bots hyping a stock and making artifical posts about it.   
 I rebalance the stock portfolio monthly and each time select only 5 stocks with the highest engagement ratio based on equal-weights.   
