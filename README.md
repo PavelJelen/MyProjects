@@ -85,7 +85,8 @@ This strategy revolves around classification of next days' UP or DOWN moves. Thi
 The daily data ranges from 2014 to 2024 and I extract **multiple features of magnificant 7 companies** - 20MA, 50MA, 100MA, RSI, Bollinger Bands and Volume as well as previous day's Close and Volume of S&P500   
 This provides around 65 features to be used for classification.
 The window to be used for LSTM input shapes is 5   
-After modifying the parameters for LSTM several times in order to produce best results, the LSTM is constructed using 3 hidden layers of 64 neurons and batch size of 32. The resulting accuracy for the test set is ca 54%.
+After modifying the parameters for LSTM several times in order to produce best results, the LSTM is constructed using 3 hidden layers of 64 neurons and batch size of 32.   
+The resulting accuracy for the test set is ca 54%.   
 The strategy buys (sells) each day based on the prediction being up (down). This is compared to the buy&hold strategy. 
 
 ![AlgoTrading_LSTM_Classification](https://github.com/PavelJelen/MyProjects/assets/151863506/1a2967db-d42b-4b4c-8d84-490576b8218f)   
