@@ -70,7 +70,7 @@ Additionally, I have implemented **Prophet** model as well as **SARIMA** model. 
 Finally, we see that LSTM NN yields the best MAPE. This might be due to several reasons. Firstly, there could definitely be done more feature engineering when it comes to XGB and RF which would in turn improve MAPE. The same applies to more involved hyperparameter tuning. Lastly, this type of data (long-term time-series) is where deep learning such as LSTM generally performs really well.  
 
 ## Trading Strategies
-In this project, I explore various trading strategies ranging from simple strategies based on technical indicators to more involved quantitative strategies 
+In this project, I explore various trading strategies ranging from simple strategies based on technical indicators to more involved quantitative strategies  
 ### Unsupervised Learning
 This strategy consisted of selecting 150 most liquid stocks from SP500 index and **computing 18 different features such as Bollinger Bands, MACD, RSI or Fama-French rolling betas**. These F-F risk factors has been shown to empirically explain asset returns. Therefore, it is reasonable to include exposure to these factors as financial features   
 Afterwards, **K-Means clustering** is applied to the whole range of stocks for each month. The main focus is a long-only momentum strategy, i.e., invest in stocks which have high momentum (high RSI) on monthly basis.
@@ -78,7 +78,14 @@ Firstly, I create a portfolio based on the highest RSI cluster for each month.
 I **optimize the weights** for each stock on monthly basis using EfficientFrontier optimizer to maximize Sharpe Ratio and ensure diversification by using a lower bound of half of equally-weighted weights and upper bound of 10% for a single stock.   
 Finally, I compare this portfolio to the returns of SP500 index   
 
-![Unsupervised learning](https://github.com/PavelJelen/MyProjects/assets/151863506/3327b318-835c-46f5-a7e4-8893e6c00d51)
+![Unsupervised learning](https://github.com/PavelJelen/MyProjects/assets/151863506/3327b318-835c-46f5-a7e4-8893e6c00d51)    
+
+
+### Intraday Volatility using GARCH
+This trategy is based on simulated daily and 5-min one-asset data. First, I fit the GARCH model on the daily data to predict one-day ahead volatility in a rolling window. This prediction is used to calculate a features called prediction premium and its associated standard deviation which are used to generate a daily signal. Next, the daily data is merged with the 5-min data. Using the 5-min data, I calculate RSI and Bollinger Bands technical indicators which are used to generate the intraday signal. Finally, I have two signals for each 5-min tick - one from daily timeframe and the other from 5-min timeframe.   
+The resulting trading strategy is based on mean reversion. I consider only the first trading signal of the day and hold it until end of the day. 
+
+![Intraday Strategy Return](https://github.com/PavelJelen/MyProjects/assets/151863506/6d177c70-5d7d-40e5-bae6-2f82ff404211)   
 
 ### Multivariate LSTM Classification of S&P500   
 This strategy revolves around classification of next days' UP or DOWN moves. This strategy is based on the extracting multiple features from Magnificent 7 stocks - Apple, Amazon, Tesla, Nvidia, Alphabet, Meta, Microsoft to predict the S&P500 moves.    
@@ -98,13 +105,6 @@ I rebalance the stock portfolio monthly and each time select only 5 stocks with 
 Finally, I compare the strategy return to the benchmark of Nasdaq returns.   
 
 ![Twitter Engagement Strategy](https://github.com/PavelJelen/MyProjects/assets/151863506/7fd33c37-1d48-460a-a356-4f092b06dfcb)
-
-### Intraday Volatility using GARCH
-This trategy is based on simulated daily and 5-min one-asset data. First, I fit the GARCH model on the daily data to predict one-day ahead volatility in a rolling window. This prediction is used to calculate a features called prediction premium and its associated standard deviation which are used to generate a daily signal. Next, the daily data is merged with the 5-min data. Using the 5-min data, I calculate RSI and Bollinger Bands technical indicators which are used to generate the intraday signal. That being said, I have two signals for each 5-min tick - one from daily timeframe and the other from 5-min timeframe.   
-The final trading strategy is based on mean reversion logic. I only care about the first trading signal of the day and hold it until end of the day. 
-
-![Intraday Strategy Return](https://github.com/PavelJelen/MyProjects/assets/151863506/6d177c70-5d7d-40e5-bae6-2f82ff404211)
-
 
 ## Model Selection using Monte Carlo 
 In this project, I take a closer look on the topic of "Model Selection". The topic of model selection stems from the bias-variance trade-off. Usually, in order to select a model, one uses an "empirical risk minimizer" such as some loss function which yields the minimal training error.However, such a training error is overly optimistic and there is a need to account for this optimism. Therefore, we are more interested in an average expected loss aka test error. In the machine learning community, cross-validation is typically used for this purpose. Nevertheless, in this project, I use information criteria such as AIC and BIC which appropriately account for the optimism by favouring less complex models and penalizing number of coefficients. There are also different purposes of the information criteria. For example, AIC is equivalent to picking best-predicting model in large samples whereas BIC is equivalent to consistent model selection (picking a true model). 
